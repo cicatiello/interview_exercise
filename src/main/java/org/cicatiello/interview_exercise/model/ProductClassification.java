@@ -2,15 +2,31 @@ package org.cicatiello.interview_exercise.model;
 
 public class ProductClassification {
 
-    String description;
+	private String code;
 
-    @Override
-    public int hashCode() {
-        return description.hashCode();
-    }
+	public String getCode() {
+		return code;
+	}
 
-    @Override
-    public boolean equals(Object obj) {
-        return description.equals(obj);
-    }
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	@Override
+	public int hashCode() {
+		return (code != null ? code.hashCode() : 0);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof ProductClassification) {
+			return (code != null ? code.equals(((ProductClassification) obj).getCode()) : false);
+		}
+		return false;
+	}
+
+	@Override
+	public String toString() {
+		return code != null ? code : "";
+	}
 }
