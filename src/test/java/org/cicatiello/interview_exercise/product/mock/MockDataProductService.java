@@ -34,7 +34,7 @@ public class MockDataProductService implements ProductService, InitializingBean 
 							: false)
 					&& (product.isImported() == imported);
 		});
-		List<Product> foundList = new ArrayList<>();		
+		List<Product> foundList = new ArrayList<>();
 		filteredProducts.forEach(product -> foundList.add(product));
 		if (foundList.size() > 1) {
 			throw new ProductServiceException("Found more and 1 product");

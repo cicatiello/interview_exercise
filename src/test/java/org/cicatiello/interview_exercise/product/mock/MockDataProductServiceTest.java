@@ -20,7 +20,7 @@ import org.junit.Test;
 public class MockDataProductServiceTest {
 
 	MockDataProductService mockDataProductService = new MockDataProductService();
-	
+
 	@Before
 	public void prepareProductData() throws Exception {
 		Product productTest = ProductBuilder.create()

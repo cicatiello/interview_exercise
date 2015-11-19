@@ -19,7 +19,7 @@ import com.google.common.collect.ImmutableSet;
 
 @Component
 public class DataInitializer implements InitializingBean {
-	
+
 	private Set<Product> productData = new HashSet<>();
 	private Map<String, ProductClassification> productClassifications = new HashMap<>();
 	private Map<String, SalesTax> salesTaxes = new HashMap<>();
@@ -32,7 +32,7 @@ public class DataInitializer implements InitializingBean {
 		getSalesTaxes().put("standard", standardRateTax);
 		getSalesTaxes().put("reduced", reducedRateTax);
 	}
-	
+
 	public void initProductClassifications() {
 		ProductClassification book = ProductClassificationBuilder.create().code("book").build();
 		ProductClassification medical = ProductClassificationBuilder.create().code("medical").build();
@@ -43,7 +43,7 @@ public class DataInitializer implements InitializingBean {
 		productClassifications.put("food", food);
 		productClassifications.put("other", other);
 	}
-	
+
 	public void initProducts() {
 		productData.add(ProductBuilder.create()
 				.description("book")
@@ -100,7 +100,7 @@ public class DataInitializer implements InitializingBean {
 				.newSalesTax(getSalesTaxes().get("reduced"))
 				.build());
 		productData.add(ProductBuilder.create()
-				.description("box of imported chocolates")
+				.description("imported box of chocolates")
 				.price(11.25)
 				.isImported(true)
 				.classification(productClassifications.get("food"))
@@ -108,18 +108,18 @@ public class DataInitializer implements InitializingBean {
 				.newSalesTax(getSalesTaxes().get("reduced"))
 				.build());
 	}
-	
+
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		initSalesTaxes();
 		initProductClassifications();
 		initProducts();
 	}
-	
+
 	public Set<Product> getProductData() {
 		return ImmutableSet.copyOf(productData);
 	}
-	
+
 	public Map<String, ProductClassification> getProductClassificationData() {
 		return ImmutableMap.copyOf(productClassifications);
 	}
@@ -131,18 +131,5 @@ public class DataInitializer implements InitializingBean {
 	public void setSalesTaxes(Map<String, SalesTax> salesTaxes) {
 		this.salesTaxes = salesTaxes;
 	}
-	
-	/*
-	book at 12.49*
-	music CD at 14.99*
-	chocolate bar at 0.85
-	imported box of chocolates at 10.00
-	imported bottle of perfume at 47.50
-	imported bottle of perfume at 27.99
-	bottle of perfume at 18.99
-	packet of headache pills at 9.75
-	box of imported chocolates at 11.25 
-	*/
-	
 
 }

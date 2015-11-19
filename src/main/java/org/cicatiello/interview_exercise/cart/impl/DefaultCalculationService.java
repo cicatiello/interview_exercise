@@ -46,10 +46,12 @@ public class DefaultCalculationService implements CalculationService {
 		cart.getEntries().forEach(entry -> {
 			cart.getSubTotal().add(entry.getSubTotal());
 			entry.getTaxValues().forEach(taxValue -> {
-				cart.getTotalTax().add(taxValue);
+				cart.setTotalTax(cart.getTotalTax().add(taxValue));
 			});
-			cart.getTotal().add(entry.getTotal());
+			cart.setTotal(cart.getTotal().add(entry.getTotal()));
 		});
+		cart.getTotalTax().setScale(2, RoundingMode.HALF_EVEN);
+		cart.getTotal().setScale(2, RoundingMode.HALF_EVEN);
 	}
 
 	private BigDecimal calculateTaxValue(BigDecimal subTotal, SalesTax tax) {

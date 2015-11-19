@@ -30,6 +30,11 @@ public class MockParserService implements ParserService {
 			boolean isImported = false;
 			if (StringUtils.hasText(description)) {
 				isImported = description.contains(importedFlag);
+				if (isImported) {
+					description = description.replaceAll("\\s+imported\\s+", " ");
+					description = description.replaceAll("imported\\s+", "");
+					description = "imported " + description;
+				}
 			}
 			try {
 				return getProductService().getProduct(description, price, isImported);

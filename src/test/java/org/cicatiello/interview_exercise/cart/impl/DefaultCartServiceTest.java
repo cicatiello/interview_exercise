@@ -1,14 +1,16 @@
 package org.cicatiello.interview_exercise.cart.impl;
 
+import static org.easymock.EasyMock.createMock;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import org.cicatiello.interview_exercise.cart.CalculationService;
-import org.cicatiello.interview_exercise.cart.CartService;
 import org.cicatiello.interview_exercise.model.Cart;
 import org.cicatiello.interview_exercise.model.CartEntry;
 import org.cicatiello.interview_exercise.model.Product;
 import org.cicatiello.interview_exercise.product.ProductService;
 import org.cicatiello.interview_exercise.product.exception.ProductServiceException;
 import org.cicatiello.interview_exercise.session.SessionService;
-import static org.easymock.EasyMock.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,8 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:test-applicationContext.xml" })
@@ -28,7 +28,7 @@ public class DefaultCartServiceTest {
 
 	@Autowired
 	SessionService sessionService;
-	
+
 	@Autowired
 	ProductService productService;
 
@@ -50,9 +50,9 @@ public class DefaultCartServiceTest {
 	public void preTestCartIsEmpty() {
 		Cart sessionCart = sessionService.getSessionCart();
 		assertNotNull(sessionCart.getEntries());
-		assertEquals(0, sessionCart.getEntries().size());		
+		assertEquals(0, sessionCart.getEntries().size());
 	}
-	
+
 	@Test
 	public void testAddCart() {
 		cartService.addProductToCart(book, 2);
